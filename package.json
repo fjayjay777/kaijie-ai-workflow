@@ -1,0 +1,26 @@
+{
+  "name": "kaijie-ai-workflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Portable personal AI workflows for Codex and Claude Code.",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "pflow": "tsx src/cli.ts",
+    "validate": "tsx src/cli.ts validate",
+    "plan": "tsx src/cli.ts plan",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "check": "npm run typecheck && npm test && npm run validate"
+  },
+  "dependencies": {
+    "ajv": "8.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

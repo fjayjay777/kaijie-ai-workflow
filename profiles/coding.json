@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "coding",
+  "rules": [
+    "personal",
+    "coding"
+  ],
+  "skills": [
+    "pflow-plan-change",
+    "pflow-implement-change",
+    "pflow-review-change"
+  ],
+  "workflows": [
+    "deliver-feature"
+  ],
+  "mcpServers": [
+    "pflow-openai-docs"
+  ]
+}

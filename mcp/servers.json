@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "servers": [
+    {
+      "id": "pflow-openai-docs",
+      "transport": "http",
+      "url": "https://developers.openai.com/mcp"
+    }
+  ]
+}

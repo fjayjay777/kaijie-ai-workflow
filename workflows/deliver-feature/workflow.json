@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "deliver-feature",
+  "description": "Deliver a requested code change through scope definition, implementation, review, and evidence-based handoff.",
+  "orderedSteps": [
+    "pflow-plan-change",
+    "pflow-implement-change",
+    "pflow-review-change"
+  ]
+}
