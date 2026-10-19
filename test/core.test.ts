@@ -26,12 +26,12 @@ test("coding profile resolves both adapters and packages the planning skills", a
   for (const harness of ["codex", "claude-code"] as const) {
     const resources = renderProfile(profile, harness);
     const prefix = harness === "codex" ? ".agents/skills" : ".claude/skills";
-    assert.equal(resources.filter(r => r.path.endsWith("/SKILL.md")).length, 4);
+    assert.equal(resources.filter(r => r.path.endsWith("/SKILL.md")).length, 6);
     assert.ok(resources.some(r => r.path === prefix + "/wayfinder/SKILL.md"));
-    assert.ok(resources.some(r => r.path === prefix + "/wayfinder/LICENSE"));
     assert.ok(resources.some(r => r.path === prefix + "/grilling/subagent-prompt.md"));
     assert.ok(resources.some(r => r.path === prefix + "/domain-modeling/ADR-FORMAT.md"));
-    assert.ok(resources.some(r => r.path === prefix + "/domain-modeling/LICENSE"));
+    assert.ok(resources.some(r => r.path === prefix + "/to-spec/builder-check-prompt.md"));
+    assert.ok(resources.some(r => r.path === prefix + "/to-tickets/SKILL.md"));
     assert.ok(resources.every(r => !r.content.includes(root)));
     assert.deepEqual(renderProfile(profile, harness), resources);
   }

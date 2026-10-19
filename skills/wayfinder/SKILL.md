@@ -153,4 +153,4 @@ The user may run unblocked tickets in parallel. Re-read files before updates, pr
 
 ## Handoff
 
-The route is clear when no unresolved decision or in-scope fog prevents planning or delivering the agreed destination. Check decisions against the outcome and its success conditions, not merely the absence of open files. Summarize the outcome, key decision links, constraints, and remaining implementation work once. Hand that record to the next planning or delivery step; clarification alone does not establish that the user's outcome has been achieved.
+The route is clear when no unresolved decision or in-scope fog prevents planning or delivering the agreed destination. Check decisions against the outcome and its success conditions, not merely the absence of open files. Summarize the outcome, key decision links, constraints, and remaining implementation work once. Hand that record to the next planning or delivery step: when the Destination is a spec, use [to-spec](../to-spec/SKILL.md) with this map as its input. Clarification alone does not establish that the user's outcome has been achieved.

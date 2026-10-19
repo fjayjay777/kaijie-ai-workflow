@@ -1,7 +1,6 @@
 ---
 name: setup-project
 description: Configure a repository for engineering skills with local Markdown issues, optional triage vocabulary, and domain documentation. Use when establishing or revising project conventions.
-license: MIT
 ---
 
 # Setup Project

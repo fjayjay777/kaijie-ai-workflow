@@ -1,7 +1,6 @@
 ---
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.
-license: MIT
 ---
 
 # Domain Modeling
@@ -53,7 +52,3 @@ If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](
 ## Within a wayfinder ticket
 
 The glossary and ADRs are the single source of truth for terms and durable decisions. When a ticket's answer settles a term or warrants an ADR, write it there and link it from the ticket's **Answer** in one line, keeping the detail in the glossary or ADR.
-
-## Attribution
-
-Adapted from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) under the MIT License; see [LICENSE](./LICENSE).

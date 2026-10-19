@@ -9,7 +9,9 @@
     "setup-project",
     "grilling",
     "wayfinder",
-    "domain-modeling"
+    "domain-modeling",
+    "to-spec",
+    "to-tickets"
   ],
   "workflows": [],
   "mcpServers": [

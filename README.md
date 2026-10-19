@@ -8,7 +8,7 @@ Define your rules, skills, workflows, and MCP declarations once. Validate them a
 
 This is a runnable scaffold, not a complete installer.
 
-**Available:** a coding profile, four skills (setup-project, grilling, wayfinder, and domain-modeling), JSON Schema validation, reference checks, deterministic adapter previews, tests, and CI.
+**Available:** a coding profile, six skills (setup-project, grilling, wayfinder, domain-modeling, to-spec, and to-tickets), JSON Schema validation, reference checks, deterministic adapter previews, tests, and CI.
 
 **Planned:** target diffs, safe installation and updates, ownership tracking, recovery, removal, authenticated MCP, and live host diagnostics. The scaffold only renders unauthenticated HTTPS MCP servers.
 
@@ -39,15 +39,19 @@ The plan command prints JSON to stdout. It does not inspect or modify another pr
 | schemas/ | Versioned configuration contracts |
 | src/adapters/ | Host-specific paths and serialization |
 
-The coding profile selects setup-project, grilling, wayfinder, and domain-modeling, with no implementation workflow. Grilling owns outcome clarification and tests each proposed question with a subagent before the main agent decides whether to answer or ask. Remaining independent questions are presented together in numbered rounds, with recommendations; dependent questions wait for the next round. Use it directly for small requests. Wayfinder calls the same skill while maintaining a shared local decision map for larger work. It plans by default; it does not automatically implement the destination.
+The coding profile selects setup-project, grilling, wayfinder, domain-modeling, to-spec, and to-tickets, with no implementation workflow. Grilling owns outcome clarification and tests each proposed question with a subagent before the main agent decides whether to answer or ask. Remaining independent questions are presented together in numbered rounds, with recommendations; dependent questions wait for the next round. Use it directly for small requests. Wayfinder calls the same skill while maintaining a shared local decision map for larger work. It plans by default; it does not automatically implement the destination.
 
 The bundled OpenAI Docs MCP is for OpenAI documentation, not general web search.
 
-Use `setup-project` when establishing project conventions: local Markdown issues, optional triage, and domain documentation. The skill and its local-issue, triage, and domain templates are included in the coding profile, with upstream attribution and license.
+Use `setup-project` when establishing project conventions: local Markdown issues, optional triage, and domain documentation. The skill and its local-issue, triage, and domain templates are included in the coding profile.
 
-Use `grilling` for focused clarification, or `wayfinder` with a loose idea or `.scratch/<effort>/map.md` for larger efforts. Grilling and its subagent prompt are bundled; research and prototype helpers remain optional.
+Use `grilling` for focused clarification, or `wayfinder` with a loose idea or `.scratch/<effort>/map.md` for larger efforts. Grilling and its subagent prompt are bundled; research and prototype helpers remain optional. Subagent orchestration requires host support; without it, grilling explicitly reports the limitation and uses the same evidence-first review locally.
 
-Use `domain-modeling` when a discussion settles domain terms or a hard-to-reverse decision. It writes the `GLOSSARY.md` and ADRs whose layout `setup-project` documents, and asks its questions through grilling. It is adapted from upstream with attribution and license. Subagent orchestration requires host support; without it, grilling explicitly reports the limitation and uses the same evidence-first review locally.
+Use `domain-modeling` when a discussion settles domain terms or a hard-to-reverse decision. It writes the `GLOSSARY.md` and ADRs whose layout `setup-project` documents, and asks its questions through grilling.
+
+Use `to-spec` when decisions are settled and you want an implementation spec. It reads a wayfinder map and its resolved tickets when one exists, otherwise the current conversation, and writes `.scratch/<effort>/spec.md`. It reports missing decisions instead of making them and confirms the test seams. A fresh subagent then reads the spec as a builder who cannot ask questions; at most one round of user questions follows, and the spec is handed off only after user approval.
+
+Use `to-tickets` on an approved spec to plan the implementation. It splits the work into tracer-bullet tickets under `.scratch/<effort>/tickets/`, each fixing behaviour, interfaces, placement, TDD steps, and acceptance criteria, so a weaker agent can implement it without making decisions. Frontier tickets are meant to run in parallel, one git worktree each, followed by one review of the whole change. Executing tickets and that review are not yet bundled.
 
 ## Commands
 
