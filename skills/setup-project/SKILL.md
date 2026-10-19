@@ -37,7 +37,7 @@ Lead each section with the recommended answer so the user can accept it in a wor
 
 > Explainer: The "issue tracker" is where issues live for this repo.
 
-Issues and specs live as local Markdown under `.scratch/<feature>/`. 
+Maps, specs, and tickets live as local Markdown under `.scratch/<effort>/`.
 
 Read existing local conventions and use [issue-tracker-local.md](./issue-tracker-local.md) as the seed for `docs/agents/issue-tracker.md`. Surface conflicts with existing conventions in the draft; migrating existing work is a separate change.
 

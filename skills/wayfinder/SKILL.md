@@ -88,7 +88,7 @@ Each ticket has a `Type:` value of `research`, `prototype`, `grilling`, or `task
 
 A session **claims** a ticket by saving `State: claimed` before work. Re-read it immediately before claiming and skip tickets already claimed by another session. Local file edits are not an atomic lock; use a single writer for a ticket and coordinate parallel work explicitly.
 
-Write dependencies in `Blocked by:` using ticket numbers within the same effort, or explicit repository-relative paths for other efforts. A ticket is **unblocked** when every referenced ticket has `State: resolved`; missing references remain blockers. The **frontier** is the `State: open` tickets with no unresolved blockers, ordered by ticket number. If no ticket is available but work remains, report the claimed work, missing reference, or dependency cycle instead of declaring completion.
+Write dependencies in `Blocked by:` using ticket numbers within the effort's `issues/` directory, or repository-relative paths for anything else. A ticket is **unblocked** when every referenced ticket has `State: resolved`; missing references remain blockers. The **frontier** is the `State: open` tickets with no unresolved blockers, ordered by ticket number. If no ticket is available but work remains, report the claimed work, missing reference, or dependency cycle instead of declaring completion.
 
 Keep the original question intact. Record the answer under `## Answer` when resolving the ticket (see [Work through the map](#work-through-the-map)). Link research and prototype assets instead of pasting them into the map.
 

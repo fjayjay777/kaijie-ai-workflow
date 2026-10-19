@@ -11,7 +11,7 @@ Turn decisions already made into a spec an implementer can work from. This is **
 
 1. **Gather the settled decisions.**
    - With a wayfinder map (the user names the effort or map, or `.scratch/<effort>/map.md` exists for this work): read its Outcome, Destination, Notes, Decisions so far, and Out of scope. Zoom into each resolved ticket's **Answer** the spec relies on, and follow its links to research, prototypes, glossary entries, and ADRs.
-   - Without a map: use the current conversation.
+   - Without a map: use the current conversation, with the effort's `issue.md` and its triage notes when present.
    - Read `docs/agents/domain.md` when present. Use the glossary's vocabulary throughout and respect ADRs in the area you're touching.
    - Explore the codebase to understand its current state, if you haven't already.
 

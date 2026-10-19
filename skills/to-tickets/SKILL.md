@@ -11,7 +11,7 @@ Break the work into a set of **tickets**: tracer-bullet vertical slices, each de
 
 ### 1. Gather context
 
-With a spec (`.scratch/<effort>/spec.md`, or a path the user passes): read it in full, with the tickets, ADRs, and glossary entries it links. Continue only when it carries an `Approved:` line; otherwise send it back to [to-spec](../to-spec/SKILL.md) for approval. Without a spec, work from the plan or conversation in context. Read `docs/agents/domain.md` when present. Ticket titles and descriptions use the glossary's vocabulary and respect ADRs in the area you're touching.
+With a spec (`.scratch/<effort>/spec.md`, or a path the user passes): read it in full, with the tickets, ADRs, and glossary entries it links. Continue only when it carries an `Approved:` line; otherwise send it back to [to-spec](../to-spec/SKILL.md) for approval. With a triaged issue (`.scratch/<effort>/issue.md` in `ready-for-agent`): work from its **Agent Brief**, with the issue body and triage notes as context. Otherwise, work from the plan or conversation in context. Read `docs/agents/domain.md` when present. Ticket titles and descriptions use the glossary's vocabulary and respect ADRs in the area you're touching.
 
 ### 2. Explore the codebase
 

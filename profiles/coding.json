@@ -11,7 +11,8 @@
     "wayfinder",
     "domain-modeling",
     "to-spec",
-    "to-tickets"
+    "to-tickets",
+    "triage"
   ],
   "workflows": [],
   "mcpServers": [

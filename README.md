@@ -8,7 +8,7 @@ Define your rules, skills, workflows, and MCP declarations once. Validate them a
 
 This is a runnable scaffold, not a complete installer.
 
-**Available:** a coding profile, six skills (setup-project, grilling, wayfinder, domain-modeling, to-spec, and to-tickets), JSON Schema validation, reference checks, deterministic adapter previews, tests, and CI.
+**Available:** a coding profile, seven skills (setup-project, triage, grilling, wayfinder, domain-modeling, to-spec, and to-tickets), JSON Schema validation, reference checks, deterministic adapter previews, tests, and CI.
 
 **Planned:** target diffs, safe installation and updates, ownership tracking, recovery, removal, authenticated MCP, and live host diagnostics. The scaffold only renders unauthenticated HTTPS MCP servers.
 
@@ -39,11 +39,13 @@ The plan command prints JSON to stdout. It does not inspect or modify another pr
 | schemas/ | Versioned configuration contracts |
 | src/adapters/ | Host-specific paths and serialization |
 
-The coding profile selects setup-project, grilling, wayfinder, domain-modeling, to-spec, and to-tickets, with no implementation workflow. Grilling owns outcome clarification and tests each proposed question with a subagent before the main agent decides whether to answer or ask. Remaining independent questions are presented together in numbered rounds, with recommendations; dependent questions wait for the next round. Use it directly for small requests. Wayfinder calls the same skill while maintaining a shared local decision map for larger work. It plans by default; it does not automatically implement the destination.
+The coding profile selects setup-project, triage, grilling, wayfinder, domain-modeling, to-spec, and to-tickets, with no implementation workflow. Grilling owns outcome clarification and tests each proposed question with a subagent before the main agent decides whether to answer or ask. Remaining independent questions are presented together in numbered rounds, with recommendations; dependent questions wait for the next round. Use it directly for small requests. Wayfinder calls the same skill while maintaining a shared local decision map for larger work. It plans by default; it does not automatically implement the destination.
 
 The bundled OpenAI Docs MCP is for OpenAI documentation, not general web search.
 
-Use `setup-project` when establishing project conventions: local Markdown issues, optional triage, and domain documentation. The skill and its local-issue, triage, and domain templates are included in the coding profile.
+Use `setup-project` when establishing project conventions: local Markdown issues, triage labels, and domain documentation. The skill and its local-issue, triage, and domain templates are included in the coding profile.
+
+Use `triage` to log a bug or idea as `.scratch/<effort>/issue.md` and move it through triage states. It checks whether the request is already implemented or previously rejected (`.out-of-scope/`), reproduces bugs, and routes the issue by size: an agent brief for to-tickets, or a wayfinder map for larger work.
 
 Use `grilling` for focused clarification, or `wayfinder` with a loose idea or `.scratch/<effort>/map.md` for larger efforts. Grilling and its subagent prompt are bundled; research and prototype helpers remain optional. Subagent orchestration requires host support; without it, grilling explicitly reports the limitation and uses the same evidence-first review locally.
 
