@@ -6,13 +6,12 @@
     "coding"
   ],
   "skills": [
-    "pflow-plan-change",
-    "pflow-implement-change",
-    "pflow-review-change"
+    "setup-project",
+    "grilling",
+    "wayfinder",
+    "domain-modeling"
   ],
-  "workflows": [
-    "deliver-feature"
-  ],
+  "workflows": [],
   "mcpServers": [
     "pflow-openai-docs"
   ]

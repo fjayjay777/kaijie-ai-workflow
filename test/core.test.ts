@@ -21,13 +21,17 @@ async function withFixture(change: (path: string) => Promise<void>) {
   }
 }
 
-test("coding profile resolves both adapters and packages workflow references", async () => {
+test("coding profile resolves both adapters and packages the planning skills", async () => {
   const profile = await loadProfile(root, "coding");
   for (const harness of ["codex", "claude-code"] as const) {
     const resources = renderProfile(profile, harness);
     const prefix = harness === "codex" ? ".agents/skills" : ".claude/skills";
     assert.equal(resources.filter(r => r.path.endsWith("/SKILL.md")).length, 4);
-    assert.ok(resources.some(r => r.path === prefix + "/pflow-deliver-feature/references/pflow-review-change.md"));
+    assert.ok(resources.some(r => r.path === prefix + "/wayfinder/SKILL.md"));
+    assert.ok(resources.some(r => r.path === prefix + "/wayfinder/LICENSE"));
+    assert.ok(resources.some(r => r.path === prefix + "/grilling/subagent-prompt.md"));
+    assert.ok(resources.some(r => r.path === prefix + "/domain-modeling/ADR-FORMAT.md"));
+    assert.ok(resources.some(r => r.path === prefix + "/domain-modeling/LICENSE"));
     assert.ok(resources.every(r => !r.content.includes(root)));
     assert.deepEqual(renderProfile(profile, harness), resources);
   }
@@ -51,7 +55,7 @@ test("missing workflow dependencies are rejected", async () => {
   await withFixture(async path => {
     const file = join(path, "profiles/coding.json");
     const data = JSON.parse(await readFile(file, "utf8"));
-    data.skills = ["pflow-plan-change"];
+    data.workflows = ["deliver-feature"];
     await writeFile(file, JSON.stringify(data));
     await assert.rejects(loadProfile(path, "coding"), /dependency/i);
   });
@@ -63,9 +67,9 @@ test("path traversal cannot select a profile", async () => {
 
 test("skill names must match directory names", async () => {
   await withFixture(async path => {
-    const file = join(path, "skills/pflow-plan-change/SKILL.md");
+    const file = join(path, "skills/setup-project/SKILL.md");
     const text = await readFile(file, "utf8");
-    await writeFile(file, text.replace("name: pflow-plan-change", "name: wrong-name"));
+    await writeFile(file, text.replace("name: setup-project", "name: wrong-name"));
     await assert.rejects(loadProfile(path, "coding"), /skill name/i);
   });
 });
@@ -77,5 +81,19 @@ test("unsupported schema versions are rejected", async () => {
     data.schemaVersion = 99;
     await writeFile(file, JSON.stringify(data));
     await assert.rejects(loadProfile(path, "coding"), /schema/i);
+  });
+});
+
+test("both adapters preserve a skill's supporting documents and license", async () => {
+  await withFixture(async path => {
+    await writeFile(join(path, "skills/setup-project/domain.md"), "# Domain conventions\n");
+    await writeFile(join(path, "skills/setup-project/LICENSE"), "Example license notice\n");
+    const profile = await loadProfile(path, "coding");
+    for (const harness of ["codex", "claude-code"] as const) {
+      const resources = renderProfile(profile, harness);
+      const prefix = harness === "codex" ? ".agents/skills" : ".claude/skills";
+      assert.equal(resources.find(r => r.path === prefix + "/setup-project/domain.md")?.content, "# Domain conventions\n");
+      assert.equal(resources.find(r => r.path === prefix + "/setup-project/LICENSE")?.content, "Example license notice\n");
+    }
   });
 });

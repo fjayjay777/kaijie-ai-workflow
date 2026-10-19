@@ -27,10 +27,14 @@ export interface SourceText {
   content: string;
 }
 
+export interface SkillSource extends SourceText {
+  supportingFiles: Array<{ name: string; content: string }>;
+}
+
 export interface ResolvedProfile {
   id: string;
   rules: SourceText[];
-  skills: SourceText[];
+  skills: SkillSource[];
   workflows: Array<Workflow & { instructions: string }>;
   servers: HttpServer[];
 }

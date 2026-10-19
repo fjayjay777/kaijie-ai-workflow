@@ -6,7 +6,9 @@ The shared core defines working methods. Adapters express those methods in host-
 
 Rules, skills, workflow instructions, profiles, and MCP declarations are edited in this repository. Generated resources are disposable previews. Each configuration has schemaVersion 1; unsupported fields, versions, and references fail validation.
 
-The coding profile selects three skills and one workflow. The workflow compiles into a fourth entry skill with bundled reference documents. Execution does not depend on a host automatically invoking another skill.
+Standalone skills also carry their top-level Markdown supporting documents and LICENSE in both adapter previews. Nested assets are not yet packaged.
+
+The coding profile selects setup-project, grilling, wayfinder, and domain-modeling, with no active implementation workflow. Grilling owns clarification and subagent answer review; wayfinder owns the persistent map and references grilling instead of duplicating its method. Both use existing authorization and preserve the provenance of decisions. Wayfinder records maps under .scratch/. Domain-modeling writes the glossary and ADRs; wayfinder tickets link to them instead of restating them. Other helper skills are optional. The deliver-feature directory remains an inactive scaffold example after removal of its placeholder skills.
 
 ## Boundaries
 

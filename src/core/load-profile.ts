@@ -1,7 +1,7 @@
-import { readFile, realpath } from "node:fs/promises";
+import { readFile, readdir, realpath } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import { Ajv } from "ajv";
-import type { HttpServer, Profile, ResolvedProfile, SourceText, Workflow } from "./types.js";
+import type { HttpServer, Profile, ResolvedProfile, SkillSource, Workflow } from "./types.js";
 
 const identifier = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const ajv = new Ajv({ allErrors: true });
@@ -30,7 +30,7 @@ async function readValidated<T>(root: string, schema: string, ...parts: string[]
   return value;
 }
 
-async function loadSkill(root: string, id: string): Promise<SourceText> {
+async function loadSkill(root: string, id: string): Promise<SkillSource> {
   const content = await sourceFile(root, "skills", id, "SKILL.md");
   const metadata = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(content)?.[1];
   if (!metadata) throw new Error("Missing skill metadata: " + id);
@@ -39,7 +39,16 @@ async function loadSkill(root: string, id: string): Promise<SourceText> {
   if (!/^description: \S[^\r\n]*\r?$/m.test(metadata)) {
     throw new Error("Skill requires a single-line description: " + id);
   }
-  return { id, content };
+  const entries = await readdir(resolve(root, "skills", id), { withFileTypes: true });
+  const names = entries
+    .filter(entry => entry.isFile() && entry.name !== "SKILL.md" &&
+      (entry.name.endsWith(".md") || entry.name === "LICENSE"))
+    .map(entry => entry.name)
+    .sort();
+  const supportingFiles = await Promise.all(names.map(async name => ({
+    name, content: await sourceFile(root, "skills", id, name),
+  })));
+  return { id, content, supportingFiles };
 }
 
 export async function loadProfile(root: string, profileId: string): Promise<ResolvedProfile> {

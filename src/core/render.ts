@@ -16,6 +16,13 @@ export function renderProfile(profile: ResolvedProfile, harness: Harness): Desir
       kind: "skill-file",
       content: skill.content,
     });
+    for (const file of skill.supportingFiles) {
+      resources.push({
+        path: adapter.skillDirectory + "/" + skill.id + "/" + file.name,
+        kind: "skill-file",
+        content: file.content,
+      });
+    }
   }
   for (const workflow of profile.workflows) {
     const name = "pflow-" + workflow.id;
