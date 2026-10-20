@@ -79,7 +79,7 @@ Skip issues whose effort directory has a `map.md`: the wayfinder map tracks them
 
 2. **Recommend.** Tell the maintainer your category and state recommendation with reasoning, plus a brief codebase summary relevant to the request (including whether it's already implemented). Wait for direction.
 
-3. **Verify the claim.** Before any grilling, check that the claim holds up. For a bug, reproduce it from the reported steps. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief.
+3. **Verify the claim.** Before any grilling, check that the claim holds up. For a bug, build a feedback loop that goes red on the reported symptom, following Phases 1 and 2 of the [diagnosing-bugs skill](../diagnosing-bugs/SKILL.md), and record its command. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief.
 
 4. **Shape it to its size.**
    - **Fits one agent brief:** sharpen it with the [grilling skill](../grilling/SKILL.md), a round of questions at a time, and the [domain-modeling skill](../domain-modeling/SKILL.md) when domain terms or durable decisions land.

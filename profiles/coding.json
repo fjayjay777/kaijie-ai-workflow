@@ -12,7 +12,18 @@
     "domain-modeling",
     "to-spec",
     "to-tickets",
-    "triage"
+    "triage",
+    "tdd",
+    "implement",
+    "review-change",
+    "codebase-design",
+    "diagnosing-bugs",
+    "improve-codebase-architecture",
+    "pr",
+    "prototype",
+    "research",
+    "retro",
+    "writing-for-agents"
   ],
   "workflows": [],
   "mcpServers": [

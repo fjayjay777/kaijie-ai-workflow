@@ -45,7 +45,7 @@ State what is out of scope. This prevents the agent from gold-plating or making 
 **Summary:** one-line description of what needs to happen
 
 **Current behavior:**
-Describe what happens now. For bugs, this is the broken behavior.
+Describe what happens now. For bugs, this is the broken behavior, with the command that reproduces it.
 For enhancements, this is the status quo the feature builds on.
 
 **Desired behavior:**

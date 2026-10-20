@@ -34,7 +34,9 @@ Used by `/wayfinder`. The **map** is a file with one **child** file per ticket.
 
 ## Implementation ticket operations
 
-Used by `to-tickets` and the implementation step.
+Used by `to-tickets` and `implement`.
 
 - **Ticket**: `.scratch/<effort>/tickets/NN-<slug>.md`, with `State:` and `Blocked by:` lines near the top.
 - **Frontier**: tickets with `State: open` whose blockers in `tickets/` all have `State: resolved`. Frontier tickets may run in parallel, each in its own git worktree.
+- **Claim**: set `State: claimed` and add a `Branch:` line naming the implementer's branch.
+- **Resolve**: append the completion line and any `Ruling:` lines under `## Result`, then set `State: resolved`. The ticket files are the implementation ledger.

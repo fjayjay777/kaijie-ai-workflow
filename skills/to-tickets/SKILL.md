@@ -57,7 +57,7 @@ Iterate until the user approves the breakdown. Write the full tickets only after
 
 ### 5. Write the tickets
 
-Fill the ticket template below for each approved slice. Each kind of entry carries what makes it unambiguous and nothing more:
+Fill the ticket template below for each approved slice. Write the tests to the standard in the [tdd skill](../tdd/SKILL.md) and its test and mocking references: the implementer copies them as given. Each kind of entry carries what makes it unambiguous and nothing more:
 
 - **A test step:** the test's name and its assertions, as code, with the spec's exact values in them.
 - **A code step:** the exact signature (name, parameters, return type), its owning module, and the specific values the spec pins. The implementer writes the body. Add one line on the approach when the signature and test leave a choice (which library call, which data structure). A body appears only for an algorithm the signature and tests do not determine, or for exact copy the spec fixes.
@@ -83,7 +83,7 @@ Check the full set against the spec yourself, and fix what you find inline:
 
 Write one file per ticket under `.scratch/<effort>/tickets/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first), following `docs/agents/issue-tracker.md` when present. When `docs/agents/triage-labels.md` exists, add a `Status:` line with its `ready-for-agent` string. Leave the spec and map unchanged.
 
-Report the frontier and which tickets can run in parallel. Implementation and the single final review of the whole change are the next steps.
+Report the frontier and which tickets can run in parallel. [implement](../implement/SKILL.md) builds the tickets and runs the single final review of the whole change.
 
 <ticket-template>
 
@@ -95,7 +95,7 @@ Spec: <link to the spec, when there is one>
 
 ## Implementer rules
 
-Implement exactly this ticket, in your own worktree. Keep the given tests, signatures, and placement as written. Watch each new test fail before implementing, then pass. If the ticket contradicts itself or the code, or cannot pass as written, stop and report what blocks you; leave the decision to the ticket author. Report the commands you ran with their results.
+Implement exactly this ticket, in your own worktree. Keep the given tests, signatures, and placement as written. Build it with the `tdd` skill: watch each new test fail before implementing, then pass. If the ticket contradicts itself or the code, or cannot pass as written, stop and report what blocks you; leave the decision to the ticket author. If your code still fails after three fix attempts, stop and report the failing output and what you tried. Report the commands you ran with their results.
 
 ## What to build
 
